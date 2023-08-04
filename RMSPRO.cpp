@@ -3,7 +3,7 @@ volatile static int _ir2;
 volatile static int _ir3;
 volatile static int _ir4;
 
-void takiroboF1::timerISR(void){
+void RMSPRO::timerISR(void){
 
   static long count = 0;
 
@@ -13,7 +13,7 @@ void takiroboF1::timerISR(void){
   /*一定周期ごとに関数を実行*/
   /*タイミングが重なった場合上から優先で実行される*/
   if((count % 23) == 0){//約20Hz
-    takiroboF1::irUpdate();
+    RMSPRO::irUpdate();
   }
   
   else{
@@ -24,4 +24,34 @@ void takiroboF1::timerISR(void){
 
   /*タイマー割り込みの再開*/
   Timer1.attachInterrupt(timerISR); 
+}
+
+/////////////////////ボールセンサー/////////////////////
+int RMSPRO::b(void){
+  int ret = 0;
+  ret = _ir1;
+  return ret;
+}
+
+int RMSPRO::b(number num){
+  int ret = 0;
+  switch (dir)
+  {
+  case FRONT:
+    ret = _ir1;
+    break;
+  case RIGHT:
+    ret = _ir2;
+    break;
+  case BACK:
+    ret = _ir3;
+    break;
+  case LEFT:
+    ret = _ir4;
+    break;
+  default:
+    ret = 0;
+    break;
+  }
+  return ret;
 }

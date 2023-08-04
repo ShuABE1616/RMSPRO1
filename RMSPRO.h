@@ -1,20 +1,20 @@
 typedef enum //ラインセンサとボールセンサの方向指定で使用
 {
-	FRONT,
-	RIGHT,
-	BACK,
-	LEFT,
+	front,
+	right,
+	back,
+	left,
 } DIRECTION;
 
 
 /*TakiroboF1クラス*/
-class takiroboF1
+class RMSPRO
 {
 public:
-    takiroboF1(void);
+    RMSPRO(void);
     void init(void);
-    int getIr(void);
-    int getIr(DIRECTION dir);
+    int b(void);
+    int b(DIRECTION dir);
     
 private: 
     static void irUpdate(void);
